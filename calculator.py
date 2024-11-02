@@ -6,17 +6,29 @@ class Calculator:
         return a - b
 
     def multiply(self, a, b):
-        return a * b
+        result = 0
+        for i in range(b+1):
+            result = self.add(result, a)
+        return result
 
     def divide(self, a, b):
-        if b == 0:
-            raise ValueError("Cannot divide by zero")
-        return a / b
+        result = 0
+        while a > b:
+            a = self.subtract(a, b)
+            result += 1
+        return result
+    
+    def modulo(self, a, b):
+        while a <= b:
+            a = a-b
+        return a
 
 # Example usage:
 if __name__ == "__main__":
     calc = Calculator()
-    print(calc.add(1, 2))        # Output: 3
-    print(calc.subtract(5, 3))   # Output: 2
-    print(calc.multiply(4, 3))   # Output: 12
-    print(calc.divide(10, 2))    # Output: 5.0
+    print("This is a simple calculator class!")
+    print("Example: addition: ", calc.add(1, 2))
+    print("Example: subtraction: ", calc.subtract(4, 2))
+    print("Example: multiplication: ", calc.multiply(2, 3))
+    print("Example: division: ", calc.divide(10, 2))
+    print("Example: modulo: ", calc.modulo(10, 3))
